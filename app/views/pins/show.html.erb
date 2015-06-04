@@ -1,8 +1,13 @@
-<h1>Show Page of the Pin</h1>
 
-<br><%=@pin.title%> </br>
+
+<h1><%=@pin.title%> </h1>
+<h3><%=@pin.subtitle%></h3>
 <br><%=@pin.description%></br>
 <br><%= image_tag(@pin.url, width: "30%", height: "30%") %></br>
+<br><%= image_tag(@pin.url2, width: "30%", height: "30%") %></br>
+<br><%= image_tag(@pin.url3, width: "30%", height: "30%") %></br>
+<br><%= image_tag(@pin.url4, width: "30%", height: "30%") %></br>
+
 
 <%=link_to 'Board', user_board_path(current_user,@board.id) %>
 <%=link_to 'Edit', edit_user_board_pin_path(current_user, @board.id, @pin.id)%>

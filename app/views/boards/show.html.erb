@@ -1,14 +1,21 @@
-<h1>Show Page of the Board</h1>
-<h2><%=@board.name%></h2>
+
+<h1><%=@board.name%></h1>
 <%pinnumber=0%>
 
 
 
 <%@pins.each do |pin|%>
 	<br><%=pin.title%></br>
-	<br><%= image_tag(pin.url, width: "30%", height: "30%") %></br>
-	<%=link_to 'EditPin', edit_user_board_pin_path(current_user,@board.id, pin.id)%>,
-	<%=link_to 'DeletePin', user_board_pin_path(current_user,@board.id, pin.id), method: :delete, data: {confirm:"Do you really want to delete this Pin?"} %>,
+	<br><%= link_to image_tag(pin.url, width: "30%", height: "30%"), user_board_pin_path(current_user,@board.id,pin.id) %></br>
+
+	<% if @board.user==current_user %>
+		<%=link_to 'EditPin', edit_user_board_pin_path(current_user,@board.id, pin.id)%>,
+		<%=link_to 'DeletePin', user_board_pin_path(current_user,@board.id, pin.id), method: :delete, data: {confirm:"Do you really want to delete this Pin?"} %><br>
+	<%end%>
 <%end%>
-<%=link_to 'Create a new Pin', new_user_board_pin_path(current_user,@board.id)%>
-<br><%=link_to 'Boards List', user_boards_path(current_user)%></br>
+
+<% if @board.user==current_user %>
+	<%=link_to 'Create a new Pin', new_user_board_pin_path(current_user,@board.id)%>
+<%end%>
+	<br><%=link_to 'Boards List', user_boards_path(current_user)%></br>
+

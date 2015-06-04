@@ -13,10 +13,17 @@ class PinsController < ApplicationController
 	end
 
 	def show
-	
-		@board=current_user.boards.find(params[:board_id])
-		@pin=@board.pins.find params[:id]
-		
+
+		@pin=Pin.find params[:id]
+		@user=@pin.user
+		@board=@user.boards.find(params[:board_id])
+		#@board=current_user.boards.find(params[:board_id])
+		#@pin=@board.pins.find params[:id]
+
+
+
+
+
 	end
 
 
@@ -24,6 +31,7 @@ class PinsController < ApplicationController
 		@board=current_user.boards.find(params[:board_id])
 		@pins=@board.pins 
 	end
+
 
 	def edit
 		@board=current_user.boards.find(params[:board_id])
@@ -35,14 +43,12 @@ class PinsController < ApplicationController
 		@board=current_user.boards.find(params[:board_id])
 		@pin=@board.pins.find params[:id]
 		@pin.destroy
-
 		redirect_to user_board_path(current_user,@board.id)
 	end
 
 	def new
 		@board=current_user.boards.find(params[:board_id])
 		@pin=@board.pins.new
-
 	end
 
 	def update 
@@ -53,13 +59,12 @@ class PinsController < ApplicationController
 		else
 			render 'edit'
 		end
-
 	end
 
 
 	private
 	def pins_params
-		params.require(:pin).permit(:title, :description, :url, :likes)
+		params.require(:pin).permit(:title, :description, :url, :likes, :subtitle, :url2, :url3, :url4)
 	end
 
 end

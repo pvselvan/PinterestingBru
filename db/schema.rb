@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603212559) do
+ActiveRecord::Schema.define(version: 20150604202813) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "name"
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20150603212559) do
     t.integer  "board_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "subtitle"
+    t.string   "url2"
+    t.string   "url3"
+    t.string   "url4"
   end
 
   add_index "pins", ["board_id"], name: "index_pins_on_board_id"

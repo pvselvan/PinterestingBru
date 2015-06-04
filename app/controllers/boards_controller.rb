@@ -18,20 +18,23 @@ class BoardsController < ApplicationController
 
 		
 		@boards.each do |board|
-			if board.public==true
-				@boards_public<<board
+			
+			if board.public==true 
+				unless @boards_public.include?(board)
+					@boards_public<<board
+				end
 			else
 				@boards_private<<board
 			end 
 		end
-		#@boards_private=current_user.boards
+
 	end
 
 	def create
 		@user=current_user
 		@board=@user.boards.new(board_params)
-		@board.user_id=@user.id 
-		#s@board.public=false 
+		@board.user_id=current_user.id 
+
 		if @board.save
 			redirect_to user_board_path(@user.id,@board.id)
 		else
@@ -41,30 +44,27 @@ class BoardsController < ApplicationController
 	end
 
 	def show
+		@board = Board.find params[:id]
 
-        @boards=Board.all
-        @boards.each do |board|
-        	if (board.user_id!=current_user.id)
-        		current_user.id=board.user_id
-
-        	end
-        	@board=current_user.boards.find params[:id]	
-
-        end
-
+		if !@board.public? && @board.user != current_user
+			redirect_to :root, alert: "You cannot access that board"
+		end
 		@pins=@board.pins
-		
-
 	end
+
+
 
 	def edit
-
 		@board=current_user.boards.find params[:id]
 	end
+
+
 
 	def new
 		@board=current_user.boards.new
 	end
+
+
 
 	def update
 		@board=current_user.boards.find params[:id]
