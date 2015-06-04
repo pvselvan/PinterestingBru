@@ -1,0 +1,9 @@
+<h1>Show Page of the Pin</h1>
+
+<br><%=@pin.title%> </br>
+<br><%=@pin.description%></br>
+<br><%= image_tag(@pin.url, width: "30%", height: "30%") %></br>
+
+<%=link_to 'Board', user_board_path(current_user,@board.id) %>
+<%=link_to 'Edit', edit_user_board_pin_path(current_user, @board.id, @pin.id)%>
+<%=link_to 'Delete',user_board_pin_path(current_user,@board.id, @pin.id), method: :delete, data: {confirm:"Do you really want to delete the pin?"} %>

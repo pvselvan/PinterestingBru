@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'users/index'
-
-  devise_for :users
-
+  devise_for :users, :path => 'accounts'
+  resources :users do
+  	resources :boards do
+  		resources :pins
+  	end
+  end
   root 'users#index'
 end
