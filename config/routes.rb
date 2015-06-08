@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   		resources :pins
   	end
   end
-  root 'users#index'
+  root 'boards#index'
 end

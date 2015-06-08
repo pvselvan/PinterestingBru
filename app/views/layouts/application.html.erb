@@ -1,4 +1,31 @@
 <!DOCTYPE html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+</head>
+
+<style>
+
+body {
+
+  text-align: center;
+  margin: 0 auto;
+}
+
+.field {
+  text-align: center;
+}
+
+h1, h2{
+  color: rgba(204, 0, 0, .8);
+  font-family: 'Lobster Two', cursive;
+}
+
+body {
+  font-family: 'Cabin', sans-serif;
+}
+</style>
+
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
@@ -8,6 +35,7 @@
   <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
+</p>
 <html>
 <head>
   <title>Pinterestingbru</title>
@@ -23,8 +51,6 @@
 <% if alert %>
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
-
-
 
 <%= yield %>
 

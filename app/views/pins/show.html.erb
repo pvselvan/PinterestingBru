@@ -1,12 +1,24 @@
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+</head>
 
+<style>
+
+h1 {
+	color: rgba(204, 0, 0, .8);
+	font-family: 'Lobster Two', cursive;
+}
+
+body {
+	font-family: 'Cabin', sans-serif;
+}
+
+</style>
 
 <h1><%=@pin.title%> </h1>
-<h3><%=@pin.subtitle%></h3>
 <br><%=@pin.description%></br>
 <br><%= image_tag(@pin.url, width: "30%", height: "30%") %></br>
-<br><%= image_tag(@pin.url2, width: "30%", height: "30%") %></br>
-<br><%= image_tag(@pin.url3, width: "30%", height: "30%") %></br>
-<br><%= image_tag(@pin.url4, width: "30%", height: "30%") %></br>
 
 
 <%=link_to 'Board', user_board_path(current_user,@board.id) %>
